@@ -79,6 +79,7 @@
 
     #time {
         box-shadow: 5px 5px 5px;
+        width: 50%;
     }
     
     input[type=number] {text-align: right;}
