@@ -76,5 +76,9 @@
     body {
         background-color: skyblue;
     }
+
+    #time {
+        box-shadow: 5px 5px 5px;
+    }
     
     input[type=number] {text-align: right;}
