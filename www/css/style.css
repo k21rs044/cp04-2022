@@ -73,5 +73,9 @@
         font-family: times;
         border-radius: 20px;
     }
+
+    #btnC {
+        background-color: yellow;
+    }
     
     input[type=number] {text-align: right;}
