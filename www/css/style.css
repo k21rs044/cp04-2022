@@ -40,6 +40,12 @@
         left:10px; right:10px;
     }
     
+    Button {
+        color: blue;
+        font-family: times;
+        border-radius: 20px;
+    }
+    
     #btnA {
         font-size: 20px;
         position:absolute; top:380px; left:2%; width:43%; height:60px; 
@@ -67,12 +73,6 @@
 
     body {
         background-color: skyblue;
-    }
-
-    Button {
-        color: blue;
-        font-family: times;
-        border-radius: 20px;
     }
 
     Button#btnA {
