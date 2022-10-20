@@ -158,8 +158,8 @@
     
     // ボタンの初期設定
     function init(){
-        $('#btnA').prop('disabled', false);
-        $('#btnB').prop('disabled', false);
+        $('#btnA').prop('disabled', true);
+        $('#btnB').prop('disabled', true);
         $('#btnC').prop('disabled', false);
         
     }
@@ -183,16 +183,21 @@
     // ButtonAがクリックされた時の処理
     function btnAClick(e){
         active = true;
+        
         if (startTime == 0) {
             startTime = new Date();
             $("#msg").html("タイマー動作中です。");
             $("#msg").css({'border': 'solid 2px #8c00ff'});
+            $('#btnA').prop('disabled', true);
+            $('#btnB').prop('disabled', false);
         } else {
             totalstoptime = parseInt( (new Date() - stopTime)/1000 );
             startTime.setSeconds(startTime.getSeconds() + totalstoptime);
             $("#msg").html("タイマーを再開。")
             //別スレッドに飛ばして2秒遅延でメッセージを更新
             setTimeout(() => $("#msg").html("タイマー動作中です。"), 2000);
+            $('#btnA').prop('disabled', true);
+            $('#btnB').prop('disabled', false);
         }
     }
 
@@ -202,6 +207,8 @@
         stopTime = new Date();
         $("#msg").html("タイマ停止中です。");
         $("#msg").css({'border': 'solid 2px #ff0000'});
+        $('#btnA').prop('disabled', false);
+        $('#btnB').prop('disabled', true);
     }
 
     // ButtonCがクリックされた時の処理
@@ -212,6 +219,8 @@
         period = 60* parseInt( $("#minute").val() ) + parseInt( $("#second").val() );
         $("#time").html("経過時間： 0");
         $("#remain").html("残り時間： " + period);
+
+        $('#btnA').prop('disabled', false);
     }
     
  
