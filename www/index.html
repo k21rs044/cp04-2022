@@ -38,6 +38,18 @@
         $('#btnC').click(function(e) {
             btnCClick(e);
         });
+
+        $('#btnLR').click(function(e) {
+            btnLRClick(e);
+        });
+
+        $('#btnLUa').click(function(e) {
+            btnLUaClick(e);
+        });
+
+        $('#btnLUb').click(function(e) {
+            btnLUbClick(e);
+        });
         init();
     });
     
@@ -186,6 +198,14 @@
             $("#msg").html("タイマー動作中です。");
         }
     }
+
+    //時間を入力するメソッド
+    function inputTime(seconds) {
+        var s = seconds % 60;
+        var m = Math.floor(seconds / 60);
+        $("#second").val(s);
+        $("#minute").val(m);
+    }
     
     // ButtonAがクリックされた時の処理
     function btnAClick(e){
@@ -231,7 +251,10 @@
         $('#btnA').prop('disabled', false);
         $('#btnB').prop('disabled', true);
     }
-    
+
+    function btnLRClick(e) {inputTime(180);}
+    function btnLUaClick(e) {inputTime(240);}
+    function btnLUbClick(e) {inputTime(300);}
  
     // 繰り返し実行する処理
     function timer(){  
