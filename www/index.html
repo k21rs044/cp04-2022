@@ -167,6 +167,7 @@
     var totalstopTime = 0;
     var period = 0;
     var stoptime = 0;
+    var currentTime = 0;
     
     // ボタンの初期設定
     function init(){
@@ -185,11 +186,15 @@
         img.onload = function() {
           ctx.drawImage(img, 0, 0, 300, 300);
         };
+
+        wavFunc();
         
+    }
+
+    var wavFunc = function wavPin() {
         var audio = new Audio();
         audio.src = "pin.wav";
         audio.play();
-        
     }
     
     //タイマー動作中ですメッセージのための関数(実行していない場合は何もしない）
@@ -236,6 +241,7 @@
         $("#msg").css({'border': 'solid 2px #ff0000'});
         $('#btnA').prop('disabled', false);
         $('#btnB').prop('disabled', true);
+        currentTime = 0;
     }
 
     // ButtonCがクリックされた時の処理
@@ -250,6 +256,7 @@
         $("#msg").css({'border': 'solid 2px #8c00ff'});
         $('#btnA').prop('disabled', false);
         $('#btnB').prop('disabled', true);
+        currentTime = 0;
     }
 
     function btnLRClick(e) {
@@ -266,12 +273,12 @@
     }
 
     function secRunFunc(func, t) {
-        var currentTime = 0;
         if (currentTime == 0) {
             currentTime = t;
+            func();
         } else {
             if (t - currentTime >= 1) {
-                func;
+                func();
                 currentTime = t;
             }
         }
@@ -281,7 +288,7 @@
     function timer(){  
         if (active) {
             var time = parseInt( (new Date() - startTime)/1000 );
-            secRunFunc(alarm(), time);
+            secRunFunc(wavFunc, time);
             var rest = period - time;
             $("#time").html("経過時間： " + time);
             $("#remain").html("残り時間： " + rest);
