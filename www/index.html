@@ -185,17 +185,17 @@
         img.onload = function() {
           ctx.drawImage(img, 0, 0, 300, 300);
         };
-        /*
+        
         var audio = new Audio();
         audio.src = "pin.wav";
         audio.play();
-        */
+        
     }
     
     //タイマー動作中ですメッセージのための関数(実行していない場合は何もしない）
     function showRunningTimerMsg() {
         if (active) {
-            $("#msg").html("タイマー動作中です。");
+            $("#msg").html("タイマー動作中");
         }
     }
 
@@ -232,7 +232,7 @@
     function btnBClick(e){
         active = false;
         stopTime = new Date();
-        $("#msg").html("タイマ停止中です。");
+        $("#msg").html("タイマ停止中");
         $("#msg").css({'border': 'solid 2px #ff0000'});
         $('#btnA').prop('disabled', false);
         $('#btnB').prop('disabled', true);
@@ -252,14 +252,36 @@
         $('#btnB').prop('disabled', true);
     }
 
-    function btnLRClick(e) {inputTime(180);}
-    function btnLUaClick(e) {inputTime(240);}
-    function btnLUbClick(e) {inputTime(300);}
+    function btnLRClick(e) {
+        inputTime(180);
+        $("#btnC").click();
+    }
+    function btnLUaClick(e) {
+        inputTime(240);
+        $("#btnC").click()
+    }
+    function btnLUbClick(e) {
+        inputTime(300);
+        $("#btnC").click()
+    }
+
+    function secRunFunc(func, t) {
+        var currentTime = 0;
+        if (currentTime == 0) {
+            currentTime = t;
+        } else {
+            if (t - currentTime >= 1) {
+                func;
+                currentTime = t;
+            }
+        }
+    }
  
     // 繰り返し実行する処理
     function timer(){  
         if (active) {
             var time = parseInt( (new Date() - startTime)/1000 );
+            secRunFunc(alarm(), time);
             var rest = period - time;
             $("#time").html("経過時間： " + time);
             $("#remain").html("残り時間： " + rest);
